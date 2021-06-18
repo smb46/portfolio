@@ -28,10 +28,10 @@ window.onload = () => {
     //styling the testimonial buttons once they are selected
     styleTestimonialBtns();
 
-    $('testimonial-1').addEventListener('click', () => {
+    $('testimonial-1-btn').addEventListener('click', () => {
         styleTestimonialBtns();
     })
-    $('testimonial-2').addEventListener('click', () => {
+    $('testimonial-2-btn').addEventListener('click', () => {
         styleTestimonialBtns();
     })
 
@@ -44,10 +44,19 @@ function styleTestimonialBtns() {
         if ($(testimonial.id).checked) {
             $(testimonial.id).labels[0].classList.add('selected-testimonial-btn-label');
             $(testimonial.id).labels[0].classList.remove('unselected-testimonial-btn-label');
+
+            //replace all non digits with an empty string to extract the integer to see which testimonial is selected and make it displayed
+            nb = testimonial.id.replace(/\D+/g, '');
+            $('testimonial-' + nb).style.display = "";
+
         }
         else {
             $(testimonial.id).labels[0].classList.remove('selected-testimonial-btn-label');
             $(testimonial.id).labels[0].classList.add('unselected-testimonial-btn-label');
+
+            //replace all non digits with an empty string to extract the integer to see which testimonial is not selected and hide it
+            nb = testimonial.id.replace(/\D+/g, '');
+            $('testimonial-' + nb).style.display = 'none';
         }
     }
 }
